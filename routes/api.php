@@ -18,7 +18,10 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserSettingController;
 use App\Http\Controllers\PaymentCardTypeController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductPhotoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPhotoController;
 use App\Models\Product;
 
 
@@ -26,6 +29,8 @@ use App\Models\Product;
 Route::get('products/{product}/related', [ProductController::class, 'related']);
 
 Route::apiResources([
+    'users' => UserController::class,
+    'photos' => PhotoController::class,
     'orders' => OrderController::class,
     'reviews' => ReviewController::class,
     'statuses' => StatusController::class,
@@ -33,6 +38,7 @@ Route::apiResources([
     'settings' => SettingController::class,
     'favorites' => FavoriteController::class,
     'categories' => CategoryController::class,
+    'users.photos' => UserPhotoController::class,
     'user-settings' => UserSettingController::class,
     'payment-types' => PaymentTypeController::class,
     'user-addresses' => UserAddressController::class ,

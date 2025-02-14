@@ -19,3 +19,5 @@ class AttributeSeeder extends Seeder
         Attribute::create(["name" => "size"]);
     }
 }
+
+

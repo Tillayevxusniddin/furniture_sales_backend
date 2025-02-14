@@ -7,6 +7,8 @@ use App\Models\Photo;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+
 
 class ProductPhotoController extends Controller
 {
@@ -36,6 +38,7 @@ class ProductPhotoController extends Controller
     }
 
     public function destroy(Product $product, Photo $photo) {
+        Gate::authorize('product:destroy');
         Storage::delete($photo->path);
         $photo->delete();
 

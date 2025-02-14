@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -33,9 +34,26 @@ class AuthController extends Controller
 
     }
 
-    public function register()
+    public function register(RegisterRequest $request)
     {
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
+        $user->assignRole('customer');
 
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('users/'.$user->id,'public');
+            $user->photos()->create([
+                'full_name' => $request->file('photo')->getClientOriginalName(),
+                'path' => $path
+            ]);
+        }
+
+        auth()->login($user);
+        return $this->success(
+            'user created', 
+            ['token' => $user->createToken($request->email)->plainTextToken]
+        );
     }
 
     public function changePassword()
