@@ -45,5 +45,9 @@ class Product extends Model
         return $this->morphMany(Photo::class, 'photoable');
     }
 
+    public function discount() {
+        return $this->hasOne(Discount::class);
+    }
+
 
 }

@@ -12,7 +12,7 @@ use App\Models\UserAddress;
 use App\Models\Stock;
 
 class OrderController extends Controller
-{
+{    
     public function __construct()
     {
         $this->middleware('auth:sanctum');
