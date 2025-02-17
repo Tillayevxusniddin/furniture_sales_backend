@@ -27,11 +27,15 @@ class DiscountController extends Controller
 
     public function update(UpdateDiscountRequest $request, Discount $discount)
     {
-        //
+        $discount->update($request->validated());
+
+        return $this->success('discount updated');
     }
 
     public function destroy(Discount $discount)
     {
-        //
+        $discount->delete();
+
+        return $this->success('discount deleted');
     }
 }

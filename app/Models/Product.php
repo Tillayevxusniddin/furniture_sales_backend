@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Carbon;
 
 class Product extends Model
 {
@@ -49,5 +50,18 @@ class Product extends Model
         return $this->hasOne(Discount::class);
     }
 
+    public function getDiscount() {
+        if ($this->discount) {
 
+            if ($this->discount->from === null && $this->discount->to === null) {
+                return $this->discount;
+            } 
+            if (Carbon::now()->between(Carbon::parse($this->discount->from), Carbon::parse($this->discount->to))) {
+                    return $this;
+            } 
+        }
+    }
 }
+
+
+
