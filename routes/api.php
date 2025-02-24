@@ -19,18 +19,23 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserSettingController;
 use App\Http\Controllers\PaymentCardTypeController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductPhotoController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPhotoController;
-use App\Models\Product;
+use App\Models\Product; 
 
 
 
 Route::get('products/{product}/related', [ProductController::class, 'related']);
+Route::post('roles/assign', [RoleController::class, 'assign']);
+Route::post('permissions/assign', [PermissionController::class, 'assign']);
 
 Route::apiResources([
     'users' => UserController::class,
+    'roles' => RoleController::class,
     'photos' => PhotoController::class,
     'orders' => OrderController::class,
     'reviews' => ReviewController::class,
@@ -40,6 +45,7 @@ Route::apiResources([
     'discounts' => DiscountController::class,
     'favorites' => FavoriteController::class,
     'categories' => CategoryController::class,
+    'permissions' => PermissionController::class,
     'users.photos' => UserPhotoController::class,
     'user-settings' => UserSettingController::class,
     'payment-types' => PaymentTypeController::class,

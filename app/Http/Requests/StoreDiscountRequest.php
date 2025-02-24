@@ -9,7 +9,8 @@ class StoreDiscountRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        // TODO permission management
+        return auth()->user()->can('discount:create');
     }
 
     public function rules(): array

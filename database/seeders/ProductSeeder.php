@@ -43,7 +43,9 @@ class ProductSeeder extends Seeder
                         "value_id" => rand(4,5)
                     ]
 
-                ])
+                ]),
+                "added_price" => rand(100000, 6000000)
+
             ]);
         }
     }

@@ -14,6 +14,7 @@ class StockResource extends JsonResource
         $result = [
             'stock_id' => $this->id,
             'quantity' => $this->quantity,
+            'added_price' => $this->added_price
         ];
 
 
@@ -23,15 +24,13 @@ class StockResource extends JsonResource
 
     public function getAttributes($result)
     {
-         $attributes = json_decode($this->attributes);
+        $attributes = json_decode($this->attributes);
 
         foreach ($attributes as $stockAttribute) {
             $attribute = Attribute::find($stockAttribute->attribute_id);
             $value = Value::find($stockAttribute->value_id);
 
             $result[$attribute->name] = $value->getTranslations('name');
-            // color => red
-            // material => MDF sifatida joylaymiz
         }
         return $result;
     }

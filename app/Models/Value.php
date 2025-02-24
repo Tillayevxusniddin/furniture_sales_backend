@@ -11,7 +11,7 @@ class Value extends Model
     use HasFactory, HasTranslations;
 
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     public $translatable = ['name'];
