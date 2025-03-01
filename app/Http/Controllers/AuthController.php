@@ -63,9 +63,6 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return $request->user()->getAllPermissions();
-        return Role::where('name', 'shop-manager')->first()->permissions->pluck('name');
-        return $request->user()->hasPermissionTo('order:delete');
-        return $this->response(new UserResource($request->user()->getPermissionNames()));
+        return $this->response(new UserResource($request->user()));
     }
 }
