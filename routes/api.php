@@ -29,9 +29,9 @@ use App\Models\Product;
 
 
 
-Route::get('products/{product}/related', [ProductController::class, 'related']);
 Route::post('roles/assign', [RoleController::class, 'assign']);
 Route::post('permissions/assign', [PermissionController::class, 'assign']);
+Route::get('products/{product}/related', [ProductController::class, 'related']);
 
 Route::apiResources([
     'users' => UserController::class,
